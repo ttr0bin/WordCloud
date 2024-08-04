@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/5.0/ref/settings/
 """
 
 from pathlib import Path
+import os
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -59,7 +60,7 @@ CORS_ALLOWED_ORIGINS = [
   'http://localhost:3000',
 ]
 
-ROOT_URLCONF = 'wordcloud.urls'
+ROOT_URLCONF = 'wordcloud_BE.urls'
 
 TEMPLATES = [
     {
@@ -77,7 +78,7 @@ TEMPLATES = [
     },
 ]
 
-WSGI_APPLICATION = 'wordcloud.wsgi.application'
+WSGI_APPLICATION = 'wordcloud_BE.wsgi.application'
 
 
 # Database
@@ -89,6 +90,13 @@ DATABASES = {
         'NAME': BASE_DIR / 'db.sqlite3',
     }
 }
+
+# 프로젝트의 루트 디렉토리를 가리키도록 BASE_DIR 설정
+BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+
+# 파일 저장 경로
+MEDIA_URL = '/media/' # URL을 통해 미디어 파일에 접근할 경로
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media') # 파일 시스템에서 미디어 파일이 저장되는 실제 경로
 
 
 # Password validation
